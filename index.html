@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas | Projeto prático</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="title-header">Seja bem vindo! Crie agora sua lista de tarefas:</h1>
+    </header>
+
+    <main>
+        <section></section>
+        <section>
+            <form id="form-one">
+                <fieldset id="fieldset-one">
+                    <input type="text" placeholder="Nome da tarefa:" id="task-name">
+                    <button type="button" id="add-task"><i class="fa-solid fa-plus"></i></button>
+                </fieldset>
+                <fieldset id="fieldset-two">
+                    <ul class="task-list"></ul>
+                </fieldset>
+                <button type="button" id="save">Salvar informações.</button>
+            </form>
+        </section>
+        <section></section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
