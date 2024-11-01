@@ -1,5 +1,4 @@
 const form = document.querySelector("#form-one");
-
 const input = document.getElementById("task-name");
 const taskList = document.querySelector(".task-list");
 
@@ -8,36 +7,40 @@ const saveBtn = document.getElementById("save");
 
 const tasks = [];
 
-function addtask(name) {
-  name = input.value;
+function addtask() {
+  const name = input.value.trim();
 
-  if (!name != "") {
-    
-  } else {
-    let listItem = document.createElement("li");
-    listItem.className = "list";
+  if (name === "") return; // Sai da função se o nome estiver vazio
 
-    let taskName = document.createElement("p");
-    taskName.innerText = name;
+  const taskId = Date.now(); // Gera um ID único baseado no tempo atual
+  const taskObject = { id: taskId, name };
 
-    let removeBtn = document.createElement("button");
-    removeBtn.innerText = "Remover tarefa";
-    removeBtn.id = "rmv-btn";
-    removeBtn.type = "button";
+  // Criar o item de lista com o nome e o botão de remoção
+  let listItem = document.createElement("li");
+  listItem.className = "list";
+  listItem.dataset.id = taskId; // Define o ID como um atributo do elemento
 
-    removeBtn.addEventListener("click", () => {
-      taskList.removeChild(listItem)
-      const index_of_name = tasks.indexOf();
-      tasks.pop(index_of_name);
-    });
+  let taskName = document.createElement("p");
+  taskName.innerText = name;
 
-    taskList.append(listItem);
-    listItem.append(taskName, removeBtn);
+  let removeBtn = document.createElement("button");
+  removeBtn.innerText = "Remover tarefa";
+  removeBtn.type = "button";
 
-    input.value = "";
+  // Função de remoção utilizando o ID
+  removeBtn.addEventListener("click", () => {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    if (taskIndex !== -1) {
+      tasks.splice(taskIndex, 1); // Remove do array tasks
+    }
+    taskList.removeChild(listItem); // Remove do DOM
+  });
 
-    tasks.push(name);
-  }
+  listItem.append(taskName, removeBtn);
+  taskList.append(listItem);
+
+  input.value = "";
+  tasks.push(taskObject); // Adiciona a tarefa como um objeto
 }
 
 addBtn.addEventListener("click", addtask);
@@ -50,6 +53,5 @@ saveBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (ev) => {
   ev.preventDefault();
-
   addtask();
 });
